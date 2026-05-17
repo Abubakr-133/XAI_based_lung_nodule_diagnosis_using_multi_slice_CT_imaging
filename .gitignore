@@ -19,7 +19,7 @@ dist/
 *.pth
 lidc_project/raw_data/
 lidc_project/outputs/
-lidc_project/dataset/
+lidc_project/dataset
 lidc_project/metadata.csv
 lidc_project/temp_single.csv
 lidc_project/processed_data/binary_test_nodule_predictions.csv
