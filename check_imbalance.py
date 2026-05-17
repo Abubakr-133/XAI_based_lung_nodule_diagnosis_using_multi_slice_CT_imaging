@@ -1,6 +1,9 @@
 import pandas as pd
+from pathlib import Path
 
-df = pd.read_csv(r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\metadata_binary.csv")
+df = pd.read_csv(
+    Path(__file__).resolve().parent / "lidc_project" / "processed_data" / "metadata_binary.csv"
+)
 slice_counts = df.groupby("label")["num_slices"].sum()
 
 print("Total slices per class:")

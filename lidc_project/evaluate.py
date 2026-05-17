@@ -5,12 +5,13 @@ import numpy as np
 
 from dataset import SliceDataset
 from model import LungNoduleModel
+from project_paths import BEST_DENSENET121_CENTRAL_PATH, SLICE_METADATA_CENTRAL_CSV
 
 # =========================
 # Paths
 # =========================
-csv_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\slice_metadata_central.csv"
-model_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\best_densenet121_central.pth"
+csv_path = SLICE_METADATA_CENTRAL_CSV
+model_path = BEST_DENSENET121_CENTRAL_PATH
 
 # =========================
 # Device

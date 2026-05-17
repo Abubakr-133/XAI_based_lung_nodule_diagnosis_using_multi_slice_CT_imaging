@@ -1,8 +1,11 @@
 import pandas as pd
+from pathlib import Path
 from PIL import Image
 
 from torch.utils.data import Dataset
 from torchvision import transforms
+
+from project_paths import PROJECT_DIR
 
 
 class SliceDataset(Dataset):
@@ -44,10 +47,29 @@ class SliceDataset(Dataset):
     def __getitem__(self, idx):
         row = self.df.iloc[idx]
 
-        image_path = row["image_path"]
+        image_path = self._resolve_image_path(row["image_path"])
         label = int(row["label"])
 
         image = Image.open(image_path).convert("RGB")
         image = self.transform(image)
 
         return image, label
+
+    @staticmethod
+    def _resolve_image_path(raw_path):
+        path_str = str(raw_path)
+        path = Path(path_str)
+
+        if path.exists():
+            return path
+
+        normalized = path_str.replace("\\", "/")
+        marker = "/processed_data/"
+        if marker in normalized:
+            relative_tail = normalized.split(marker, 1)[1]
+            fallback = PROJECT_DIR / "processed_data" / Path(relative_tail)
+            if fallback.exists():
+                return fallback
+
+        fallback = PROJECT_DIR / path
+        return fallback

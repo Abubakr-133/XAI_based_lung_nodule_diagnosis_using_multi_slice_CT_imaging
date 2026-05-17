@@ -5,6 +5,8 @@ import pydicom
 import cv2
 import xml.etree.ElementTree as ET
 
+from project_paths import PROCESSED_DATA_DIR, RAW_DATA_DIR
+
 # Uses only unblindedReadNodule -> ≥3mm nodules
 # Requires ≥2 radiologists
 #  Uses full malignancy scale (1–5)
@@ -21,8 +23,8 @@ import xml.etree.ElementTree as ET
 # CONFIG
 # ==============================
 
-RAW_DATA_PATH = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\raw_data"
-OUTPUT_PATH = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data"
+RAW_DATA_PATH = RAW_DATA_DIR
+OUTPUT_PATH = PROCESSED_DATA_DIR
 
 os.makedirs(OUTPUT_PATH, exist_ok=True)
 

@@ -1,6 +1,7 @@
 from dataset import SliceDataset
+from project_paths import SLICE_METADATA_CSV
 
-csv_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\slice_metadata.csv"
+csv_path = SLICE_METADATA_CSV
 
 train_dataset = SliceDataset(csv_path, split="train")
 

@@ -5,7 +5,7 @@ import torch
 import numpy as np
 import cv2
 from PIL import Image
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.staticfiles import StaticFiles
 from typing import List
 
@@ -13,12 +13,13 @@ from pytorch_grad_cam import GradCAM
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
 
 from model import LungNoduleModel
+from project_paths import BEST_DENSENET121_BINARY_PATH, OUTPUTS_DIR, env_or_path
 
 # =========================
 # CONFIG
 # =========================
-MODEL_PATH = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\best_densenet121_binary.pth"
-OUTPUT_DIR = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\outputs"
+MODEL_PATH = env_or_path("LND_MODEL_PATH", BEST_DENSENET121_BINARY_PATH)
+OUTPUT_DIR = env_or_path("LND_OUTPUT_DIR", OUTPUTS_DIR)
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -107,7 +108,7 @@ def generate_gradcam_outputs(img_np, input_tensor, pred_class, slice_name):
 # Predict endpoint (UPLOAD FILES)
 # =========================
 @app.post("/predict")
-async def predict(files: List[UploadFile] = File(...)):
+async def predict(request: Request, files: List[UploadFile] = File(...)):
     if len(files) < 2:
         return {
             "status": "error",
@@ -116,6 +117,8 @@ async def predict(files: List[UploadFile] = File(...)):
 
     slice_results = []
     all_probs = []
+
+    base_url = str(request.base_url).rstrip("/")
 
     for file in files:
         image_bytes = await file.read()
@@ -145,9 +148,9 @@ async def predict(files: List[UploadFile] = File(...)):
                 "malignant": round(float(probs[1]), 4)
             },
             "outputs": {
-                "original_image_url": f"http://127.0.0.1:8000/outputs/{original_filename}",
-                "gradcam_heatmap_url": f"http://127.0.0.1:8000/outputs/{heatmap_filename}",
-                "gradcam_overlay_url": f"http://127.0.0.1:8000/outputs/{overlay_filename}"
+                "original_image_url": f"{base_url}/outputs/{original_filename}",
+                "gradcam_heatmap_url": f"{base_url}/outputs/{heatmap_filename}",
+                "gradcam_overlay_url": f"{base_url}/outputs/{overlay_filename}"
             }
         })
 

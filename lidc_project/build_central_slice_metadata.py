@@ -1,12 +1,19 @@
 import os
+from pathlib import Path
 import pandas as pd
+
+from project_paths import (
+    METADATA_WITH_SPLIT_CSV,
+    PROCESSED_DATA_DIR,
+    SLICE_METADATA_CENTRAL_CSV,
+)
 
 # =========================
 # Paths
 # =========================
-metadata_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\metadata_with_split.csv"
-processed_data_root = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data"
-output_csv = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\slice_metadata_central.csv"
+metadata_path = METADATA_WITH_SPLIT_CSV
+processed_data_root = PROCESSED_DATA_DIR
+output_csv = SLICE_METADATA_CENTRAL_CSV
 
 # =========================
 # Load nodule-level metadata
@@ -45,7 +52,7 @@ for _, row in df.iterrows():
 
     for slice_file in central_slices:
         slice_rows.append({
-            "image_path": os.path.join(folder_path, slice_file),
+            "image_path": Path("processed_data") / folder_name / slice_file,
             "label": int(row["label"]),
             "split": row["split"],
             "patient_id": row["patient_id"],

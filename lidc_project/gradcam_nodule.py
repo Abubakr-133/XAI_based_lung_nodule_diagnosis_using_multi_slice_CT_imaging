@@ -9,12 +9,16 @@ from pytorch_grad_cam import GradCAM
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
 
 from model import LungNoduleModel
+from project_paths import BEST_DENSENET121_BINARY_PATH, PROCESSED_DATA_DIR, env_or_path
 
 # =========================
 # CONFIG
 # =========================
-model_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\best_densenet121_binary.pth"
-folder_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\series_36_nodule_0"
+model_path = env_or_path("LND_MODEL_PATH", BEST_DENSENET121_BINARY_PATH)
+folder_path = env_or_path(
+    "LND_SAMPLE_FOLDER",
+    PROCESSED_DATA_DIR / "series_36_nodule_0",
+)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device:", device)

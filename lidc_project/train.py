@@ -120,11 +120,12 @@ import pandas as pd
 
 from dataset import SliceDataset
 from model import LungNoduleModel
+from project_paths import BEST_DENSENET121_CENTRAL_PATH, SLICE_METADATA_CENTRAL_CSV
 
 # =========================
 # Paths
 # =========================
-csv_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\slice_metadata_central.csv"
+csv_path = SLICE_METADATA_CENTRAL_CSV
 
 # =========================
 # Device
@@ -245,7 +246,7 @@ for epoch in range(num_epochs):
     # ---- Early Stopping ----
     if val_acc > best_val_acc:
         best_val_acc = val_acc
-        torch.save(model.state_dict(), "best_densenet121_central.pth")
+        torch.save(model.state_dict(), BEST_DENSENET121_CENTRAL_PATH)
         print("Best model saved.")
         patience_counter = 0
     else:

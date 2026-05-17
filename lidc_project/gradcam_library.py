@@ -9,12 +9,16 @@ from pytorch_grad_cam.utils.image import show_cam_on_image
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
 
 from model import LungNoduleModel
+from project_paths import BEST_DENSENET121_BINARY_PATH, PROCESSED_DATA_DIR, env_or_path
 
 # =========================
 # Paths
 # =========================
-model_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\best_densenet121_binary.pth"
-image_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\series_15_nodule_4\slice_4.png"
+model_path = env_or_path("LND_MODEL_PATH", BEST_DENSENET121_BINARY_PATH)
+image_path = env_or_path(
+    "LND_SAMPLE_IMAGE",
+    PROCESSED_DATA_DIR / "series_15_nodule_4" / "slice_4.png",
+)
 
 # =========================
 # Device

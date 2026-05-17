@@ -1,10 +1,12 @@
 import pandas as pd
 
+from project_paths import SLICE_METADATA_BINARY_CSV, SLICE_METADATA_CENTRAL_CSV
+
 # =========================
 # Paths
 # =========================
-central_csv = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\slice_metadata_central.csv"
-binary_csv = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\slice_metadata_binary.csv"
+central_csv = SLICE_METADATA_CENTRAL_CSV
+binary_csv = SLICE_METADATA_BINARY_CSV
 
 # =========================
 # Load datasets

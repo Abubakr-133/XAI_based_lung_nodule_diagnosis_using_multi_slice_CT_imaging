@@ -1,1 +1,13 @@
-py -m pip install pydicom numpy opencv-python pandas matplotlib scikit-image
+numpy
+pandas
+pydicom
+opencv-python
+Pillow
+matplotlib
+scikit-learn
+torch
+torchvision
+fastapi
+uvicorn
+python-multipart
+grad-cam

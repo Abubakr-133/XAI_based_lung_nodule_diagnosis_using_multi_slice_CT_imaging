@@ -15,18 +15,13 @@ node_modules/
 .next/
 dist/
 
-# Local model artifacts and generated outputs
-*.pth
+# Local generated outputs
 lidc_project/raw_data/
 lidc_project/outputs/
 lidc_project/dataset
 lidc_project/metadata.csv
 lidc_project/temp_single.csv
 lidc_project/processed_data/binary_test_nodule_predictions.csv
-lidc_project/processed_data/metadata_binary.csv
-lidc_project/processed_data/slice_metadata.csv
-lidc_project/processed_data/slice_metadata_binary.csv
-lidc_project/processed_data/slice_metadata_central.csv
 
 # Nested repositories managed separately
 lidc_ui_v0/

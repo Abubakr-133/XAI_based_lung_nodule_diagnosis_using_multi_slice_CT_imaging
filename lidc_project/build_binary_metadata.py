@@ -1,7 +1,9 @@
 import pandas as pd
 
-input_csv = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\slice_metadata_central.csv"
-output_csv = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\slice_metadata_binary.csv"
+from project_paths import SLICE_METADATA_BINARY_CSV, SLICE_METADATA_CENTRAL_CSV
+
+input_csv = SLICE_METADATA_CENTRAL_CSV
+output_csv = SLICE_METADATA_BINARY_CSV
 
 df = pd.read_csv(input_csv)
 

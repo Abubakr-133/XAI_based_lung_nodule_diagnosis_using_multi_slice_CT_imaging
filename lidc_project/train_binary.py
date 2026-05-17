@@ -6,12 +6,13 @@ import pandas as pd
 
 from dataset import SliceDataset
 from model import LungNoduleModel
+from project_paths import BEST_DENSENET121_BINARY_PATH, SLICE_METADATA_BINARY_CSV
 
 # =========================
 # Paths
 # =========================
-csv_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\processed_data\slice_metadata_binary.csv"
-save_path = r"C:\Users\shaik\myProjects\Lung_nodule_diagnosis\lidc_project\best_densenet121_binary.pth"
+csv_path = SLICE_METADATA_BINARY_CSV
+save_path = BEST_DENSENET121_BINARY_PATH
 
 # =========================
 # Device
